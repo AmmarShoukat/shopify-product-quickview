@@ -1,0 +1,356 @@
+<!-- nws-collection-products -->
+<div class="nws-collection-products nws-ja-padding nws-ja-padding-top-none" {% if section.settings.section-color != blank %}style="background-color:{{ section.settings.section-color }};"{% endif %} >
+  {% for block in section.blocks %} 
+    {% assign uid = forloop.index %}
+    <div class="container-collection" id="nws-id-{{ block.settings.collection.handle | replace: "/collections/", "" }}">
+        <div class="nws-collection-products-heading main-site-heading">
+          {% if block.settings.m-heading != blank %}<h2><span>{{ block.settings.m-heading }}</span></h2>{% endif %}
+          {% if block.settings.sub-heading != blank %}<p>{{ block.settings.sub-heading }}</p>{% endif %}
+        </div>
+      {% case block.type %} 
+         {% when 'collection' %}
+          <div class="nws-collection-products-row"> 
+            {% if block.settings.nws-align == 'left' %}
+             {% if block.settings.banner-img != blank or block.settings.video_url != blank %}
+                <div class="nws-col-row nws-col-row-banner">
+                  <a href="{{ block.settings.banner-link }}" class="nws-collection-top-section-banner" >
+                    {% if block.settings.video_url != blank %}
+                      <div class="nws-collection-video">
+                          {% if block.settings.video_url.type == "youtube" %}
+                              <div class="nws-vid-youtube" ><iframe src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?controls=0&showinfo=0&rel=0&autoplay=1&playlist={{ block.settings.video_url.id }}&loop=1&mute=1" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                          {% if block.settings.video_url.type == "vimeo" %}
+                              <div class="nws-vid-youtube" ><iframe src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&autoplay=1&loop=1&byline=0&title=0" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                      </div>
+                    {% else %}
+                      <div class="nws-banner-img-hover" >
+                        <img src="{{ block.settings.banner-img | img_url: '360x' }}" class="collection-img" />
+                        {% if block.settings.banner-img-hover != blank %}<img src="{{ block.settings.banner-img-hover | img_url: '360x' }}" class="collection-img" />{% endif %}
+                      </div>
+                    {% endif %}
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+            {% for product in collections[block.settings.collection].products limit: 3 %}
+               <div class="nws-col-row">
+                 {%- render "nws-product-grid-item", product: product, uid: uid -%}
+               </div>
+            {% endfor %}
+            {% if block.settings.nws-align == 'right' %}
+             {% if block.settings.banner-img != blank or block.settings.video_url != blank %}
+                <div class="nws-col-row nws-col-row-banner">
+                  <a href="{{ block.settings.banner-link }}" class="nws-collection-top-section-banner" >
+                    {% if block.settings.video_url != blank %}
+                      <div class="nws-collection-video">
+                          {% if block.settings.video_url.type == "youtube" %}
+                              <div class="nws-vid-youtube" ><iframe src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?controls=0&showinfo=0&rel=0&autoplay=1&playlist={{ block.settings.video_url.id }}&loop=1&mute=1" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                          {% if block.settings.video_url.type == "vimeo" %}
+                              <div class="nws-vid-youtube" ><iframe src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&autoplay=1&loop=1&byline=0&title=0" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                      </div>
+                    {% else %}
+                      <div class="nws-banner-img-hover" >
+                        <img src="{{ block.settings.banner-img | img_url: '360x' }}" class="collection-img" />
+                        {% if block.settings.banner-img-hover != blank %}<img src="{{ block.settings.banner-img-hover | img_url: '360x' }}" class="collection-img" />{% endif %}
+                      </div>
+                    {% endif %}
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+      
+         {% when 'collection-2' %}
+          <div class="nws-collection-products-row">  
+            {% for product in collections[block.settings.collection].products %}
+               <div class="nws-col-row">
+                 {%- render "nws-product-grid-item", product: product, uid: uid -%}
+               </div>
+            {% endfor %}
+          </div>
+      
+          {% when 'collection-3' %}
+          {% assign count = 0 %}
+          {% for product in collections[section.settings.collection].products %}
+             {% assign count = count | plus: 1 %}
+          {% endfor %}
+          <div class="nws-collection-products-row {% if count > 4 %}nws-slider-collection-products{% endif %}">  
+            {% for product in collections[block.settings.collection].products %}
+               <div class="nws-col-row">
+                 {%- render "nws-product-grid-item", product: product, uid: uid -%}
+               </div>
+            {% endfor %}
+          </div>
+      
+          {% when 'collection-4' %}
+           <div class="nws-collection-products-row nws-cp-three-row"> 
+            {% if block.settings.nws-align == 'left' %}
+             {% if block.settings.banner-img != blank or block.settings.video_url != blank %}
+                <div class="nws-col-row nws-col-row-banner">
+                  <a href="{{ block.settings.banner-link }}" class="nws-collection-top-section-banner" >
+                    {% if block.settings.video_url != blank %}
+                      <div class="nws-collection-video">
+                          {% if block.settings.video_url.type == "youtube" %}
+                              <div class="nws-vid-youtube" ><iframe src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?controls=0&showinfo=0&rel=0&autoplay=1&playlist={{ block.settings.video_url.id }}&loop=1&mute=1" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                          {% if block.settings.video_url.type == "vimeo" %}
+                              <div class="nws-vid-youtube" ><iframe src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&autoplay=1&loop=1&byline=0&title=0" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                      </div>
+                    {% else %}
+                      <div class="nws-banner-img-hover" >
+                        <img src="{{ block.settings.banner-img | img_url: '660x' }}" class="collection-img" />
+                        {% if block.settings.banner-img-hover != blank %}<img src="{{ block.settings.banner-img-hover | img_url: '660x' }}" class="collection-img" />{% endif %}
+                      </div>
+                    {% endif %}
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+            {% for product in collections[block.settings.collection].products limit: 2 %}
+               <div class="nws-col-row">
+                 {%- render "nws-product-grid-item", product: product, uid: uid -%}
+               </div>
+            {% endfor %}
+            {% if block.settings.nws-align == 'right' %}
+             {% if block.settings.banner-img != blank or block.settings.video_url != blank %}
+                <div class="nws-col-row nws-col-row-banner">
+                  <a href="{{ block.settings.banner-link }}" class="nws-collection-top-section-banner" >
+                    {% if block.settings.video_url != blank %}
+                      <div class="nws-collection-video">
+                          {% if block.settings.video_url.type == "youtube" %}
+                              <div class="nws-vid-youtube" ><iframe src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?controls=0&showinfo=0&rel=0&autoplay=1&playlist={{ block.settings.video_url.id }}&loop=1&mute=1" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                          {% if block.settings.video_url.type == "vimeo" %}
+                              <div class="nws-vid-youtube" ><iframe src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&autoplay=1&loop=1&byline=0&title=0" width="100%" height="600" frameborder="0" allowfullscreen></iframe></div>
+                          {% endif %}
+                      </div>
+                    {% else %}
+                      <div class="nws-banner-img-hover" >
+                        <img src="{{ block.settings.banner-img | img_url: '660x' }}" class="collection-img" />
+                        {% if block.settings.banner-img-hover != blank %}<img src="{{ block.settings.banner-img-hover | img_url: '660x' }}" class="collection-img" />{% endif %}
+                      </div>
+                    {% endif %}
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+      
+          {% when 'collection-5' %}
+          <div class="nws-collection-products-row nws-cp-three-row">  
+            {% for product in collections[block.settings.collection].products limit: 3 %}
+               <div class="nws-col-row">
+                 {%- render "nws-product-grid-item", product: product, uid: uid -%}
+               </div>
+            {% endfor %}
+          </div>
+      
+      {% endcase %} 
+    </div>
+  {% endfor %}
+</div>
+<!-- end nws-collection-products -->
+
+{% schema %}
+{
+  "name": "NWS - Collections",
+  "settings": [
+      {
+        "type": "color",
+        "id": "section-color",
+        "label": "Section BG Color"
+      }
+  ],
+  "blocks": [
+  {
+    "type": "collection",
+    "name": "3 Products + Banner",
+    "settings": [
+        {
+          "type": "radio",
+          "label": "Banner Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Banner Left"
+            },
+            {
+              "label": "Banner Right",
+              "value": "right"
+            }
+          ],
+          "id": "nws-align",
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-img",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-img-hover",
+          "label": "Banner Image Hover"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video link",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ]
+        },
+        {
+          "type": "url",
+          "id": "banner-link",
+          "label": "Banner Link"
+        },
+        {
+          "type": "text",
+          "id": "m-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "collection-2",
+      "name": "All Products",
+      "settings": [
+        {
+          "type": "text",
+          "id": "m-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "collection-3",
+      "name": "Products Slider",
+      "settings": [
+        {
+          "type": "text",
+          "id": "m-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "collection-4",
+      "name": "2 Products + Banner",
+      "settings": [
+        {
+          "type": "radio",
+          "label": "Banner Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Banner Left"
+            },
+            {
+              "label": "Banner Right",
+              "value": "right"
+            }
+          ],
+          "id": "nws-align",
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-img",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-img-hover",
+          "label": "Banner Image Hover"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video link",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ]
+        },
+        {
+          "type": "url",
+          "id": "banner-link",
+          "label": "Banner Link"
+        },
+        {
+          "type": "text",
+          "id": "m-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "collection-5",
+      "name": "3 Products",
+      "settings": [
+        {
+          "type": "text",
+          "id": "m-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
