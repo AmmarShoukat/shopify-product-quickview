@@ -1,0 +1,55 @@
+<div id="nws-quick-view" class="quick-view-off" style="display:none;" >
+  <div class="nws-qv-overlay"></div>
+  <div class="nws-qv-drawar">
+    <div class="nws-qv-close">
+      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.83534 1L19.8353 19M19.8353 1L1.83533 19L19.8353 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+ <div id="quick-view">   
+   <div class="qv-product-images"></div>
+   <div class="qv-content">
+     <div class="holder">
+       <div class="top_heading" >
+         <div class="nws-col-qv" >
+           {% render 'nws-stars' %}
+           <span class="qv-product-title"></span>
+         </div>
+         <div class="nws-col-qv" >
+           <div class="nws_qv_price" >
+             <span class="qv-product-price"></span><del class="qv-product-original-price"></del>
+           </div>
+           <div class="qv_price__badge" ></div>
+         </div>
+        </div>
+       
+       <form method="post" action="/cart/add" accept-charset="UTF-8" class="shopify-product-form qv-add-to-cart product-form product-form-product-template " enctype="multipart/form-data">
+         <input type="hidden" name="form_type" value="product" tabindex="0">
+         <input type="hidden" name="utf8" value="✓" tabindex="0">
+         <input type="hidden" name="quantity" value="1" tabindex="0">
+         <div class="qv-product-options"></div>
+         <input type="hidden" name="id" class="nws-product-form__variants" value="" />
+         <input type="submit" class="qv-add-button btn product-form__cart-submit nws-atc-btn" value="Add to Cart">
+       </form>
+       
+     </div>
+
+     <div class="qv-product_desc" >
+       <h3>Description</h3>
+       <p></p>
+     </div>
+     
+     <div class="qv-product_tabs" >
+     </div>
+	
+     <div class="view_pdp_link" >
+       <a class="view-product" href="">
+         <span>View Full Details
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.834961 9L4.83496 5L0.83496 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+       </a>
+     </div>
+   </div>
+    </div>
+  </div>
+</div>
